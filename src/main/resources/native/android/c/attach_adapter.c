@@ -32,6 +32,7 @@ jclass jLifecycleServiceClass;
 jclass jBleServiceClass;
 jclass jKeyboardServiceClass;
 jclass jPositionServiceClass;
+jclass jPushNotificationsServiceClass;
 int handlesInitialized = 0;
 
 jclass registerClass(JNIEnv* androidEnv, const char* name) {
@@ -51,10 +52,11 @@ void registerAttachMethodHandles(JNIEnv* androidEnv) {
         return;
     }
     jUtilClass = registerClass(androidEnv, "com/gluonhq/helloandroid/Util");
-    jLifecycleServiceClass= registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikLifecycleService");
-    jBleServiceClass= registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikBleService");
-    jKeyboardServiceClass=registerClass(androidEnv, "com/gluonhq/helloandroid/KeyboardService");
-    jPositionServiceClass=registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikPositionService");
+    jLifecycleServiceClass = registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikLifecycleService");
+    jBleServiceClass = registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikBleService");
+    jKeyboardServiceClass = registerClass(androidEnv, "com/gluonhq/helloandroid/KeyboardService");
+    jPositionServiceClass = registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikPositionService");
+    jPushNotificationsServiceClass = registerClass(androidEnv, "com/gluonhq/helloandroid/DalvikPushNotificationsService");
     handlesInitialized = 1;
 }
 
@@ -76,6 +78,10 @@ jclass substrateGetKeyboardServiceClass() {
 
 jclass substrateGetPositionServiceClass() {
     return jPositionServiceClass;
+}
+
+jclass substrateGetPushNotificationsServiceClass() {
+    return jPushNotificationsServiceClass;
 }
 
 // Lifecycle
